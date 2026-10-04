@@ -10,13 +10,12 @@ AIに、目の前のエラーを消すだけでなく「どこを直すべきか
 
 コードの設計・修正・レビュー・説明に使います。困っていることから選んでください。
 
-| こんなときに | Skill | 使うとどう変わるか |
-|---|---|---|
-| 設計が、関数・引数・編集箇所の話だけになってしまう | [design-model](skills/design-model/SKILL.md) | まず役割・流れ・守る条件の粒度で仕組みを考え、具体的なコード変更と分けて計画します。 |
-| 修正が、その場しのぎの条件追加になってしまう | [boundary-first](skills/boundary-first/SKILL.md) | 条件分岐を足す前に、処理やデータの置き場所を変えることで問題を解消できないか検討します。 |
-| 既存コードの、どこを整理すべきか知りたい | [boundary-review](skills/boundary-review/SKILL.md) | 同じ補正を各所で繰り返すなど、配置が原因で無理が生じている箇所を探し、根拠と改善案を示します。修正はしません。 |
-| 内部の名前ばかりで説明され、何の話か分かりにくい | [reader-first](skills/reader-first/SKILL.md) | 何を知りたいか、コードをどこまで知っているかに合わせ、役割や動作から説明します。文章・表・短いテキスト図を選びます。 |
-| 説明に、表示できる図も使ってほしい | [reader-first-mermaid](skills/reader-first-mermaid/SKILL.md) | `reader-first` と同じ説明方針で、関係や流れが図の方が伝わる場合はMermaidを使います。 |
+| Skill | 何を改善するか |
+|---|---|
+| [design-model](skills/design-model/SKILL.md) | GPT系AIの細かすぎる計画を、関数や引数の編集ではなく、仕組み・役割・流れから考える設計に整えるskill。 |
+| [boundary-first](skills/boundary-first/SKILL.md) | AIが最小限の修正で問題にふたをするのを防ぎ、その対処が必要になっている原因や、処理・データの置き場所まで見直すskill。 |
+| [boundary-review](skills/boundary-review/SKILL.md) | 既存コードから、その場しのぎの補正や継ぎ足しで問題をふさいでいる箇所を探し、改善案を示すskill。修正は行いません。 |
+| [reader-first](skills/reader-first/SKILL.md) / [reader-first-mermaid](skills/reader-first-mermaid/SKILL.md) | コードや仕組みを人に説明するとき、相手の理解に合わせて読みやすくするskill。Mermaidの表示に対応しているかで使い分けます。 |
 
 説明用の2つは、Mermaidの図を表示できる環境なら `reader-first-mermaid`、表示できない環境なら `reader-first` のどちらか一方を選んでください。
 
@@ -24,11 +23,11 @@ AIに、目の前のエラーを消すだけでなく「どこを直すべきか
 
 Gitのブランチや変更履歴、GitHubのPR（変更提案）を使う作業向けです。GitとGitHub CLI（`gh`）を利用します。
 
-| こんなときに | Skill | 使うとどう変わるか |
-|---|---|---|
-| 今回書いたコードの見直しで、既存コードまで勝手に変えてほしくない | [base-aware-edit](skills/base-aware-edit/SKILL.md) | 今回追加した行と変更元のブランチにある行を区別します。既存コードの動作を変える前に、理由と影響を示して確認します。 |
-| 一見不要な処理が、なぜ残っているのか分からない | [trace-design-origin](skills/trace-design-origin/SKILL.md) | 追加時のコミット・PR・議論をたどり、守るべき条件を調べます。理由が見つからなければ、そのまま報告します。 |
-| PR本文を読んでも、何がどう変わるか伝わらない | [pr-description](skills/pr-description/SKILL.md) | 変更前後の動作を図や表で示し、全体像から確認結果まで読み進められる本文に整えます。 |
+| Skill | 何を改善するか |
+|---|---|
+| [base-aware-edit](skills/base-aware-edit/SKILL.md) | 今回書いたコードを見直す勢いで、既存コードまで勝手に変えるのを防ぐskill。既存コードの動作を変える前に、理由と影響を示して確認します。 |
+| [trace-design-origin](skills/trace-design-origin/SKILL.md) | 一見不要なコードを消す前に、過去の変更やPRをたどり、なぜ必要になったのかを確かめるskill。 |
+| [pr-description](skills/pr-description/SKILL.md) | PRを読む人が、何がどう変わるのかをすぐ把握できるように、本文を図・表・短い説明で整えるskill。 |
 
 `base-aware-edit` と `trace-design-origin` は、PRがない場合もブランチやコミット履歴を使って調べます。
 
