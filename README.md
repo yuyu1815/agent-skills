@@ -1,9 +1,9 @@
 # Agent Skills
 
 AIがコードや説明を作るときの判断を支えるskillsです。
-仕組みの理解、責務の配置、設計レビュー、相手に合わせた説明を扱います。
+仕組みの理解、責務の配置、設計レビュー、変更の経緯調査、PR本文、相手に合わせた説明を扱います。
 
-各skillは単独で使えます。目的に合うものを選んでください。
+目的に合うものを選んでください。`base-aware-edit` は `trace-design-origin` とセットで使い、それ以外は単独でも使えます。
 
 ## どれを使うか
 
@@ -12,6 +12,9 @@ AIがコードや説明を作るときの判断を支えるskillsです。
 | [design-model](skills/design-model/SKILL.md) | コードの編集手順より先に、仕組み・関係・保証を捉える | 設計書、実装計画、設計を伴う委任 |
 | [boundary-first](skills/boundary-first/SKILL.md) | 処理や状態をどこに持たせるか判断する | 実装、修正、リファクタリング |
 | [boundary-review](skills/boundary-review/SKILL.md) | 既存コードから責務・配置・表現のずれを探す | 読み取り専用の設計レビュー |
+| [base-aware-edit](skills/base-aware-edit/SKILL.md) | 今回追加した行とベースブランチ由来の行を区別し、変更前の確認を切り替える | ブランチ上での編集・削除・リファクタリング |
+| [trace-design-origin](skills/trace-design-origin/SKILL.md) | コミット・PR・レビュー・issueから、コードが置かれた理由を調べる | 意図が不明な既存コードの変更前 |
+| [pr-description](skills/pr-description/SKILL.md) | 変更の全体像と挙動の違いが分かるPR本文を作る | PR本文の作成・更新 |
 | [reader-first](skills/reader-first/SKILL.md) | 目的と共有理解に合わせて、文章・表・短いテキスト図で説明する | Mermaid非対応の会話環境 |
 | [reader-first-mermaid](skills/reader-first-mermaid/SKILL.md) | 同じ説明方針で、Mermaidも表示手段として選べる | Mermaid対応の会話環境 |
 
@@ -48,10 +51,16 @@ AIがコードや説明を作るときの判断を支えるskillsです。
 `boundary-review` の調査・報告を終え、修正を依頼する際に実装の段階へ切り替えてください。
 これはskill同士の併用禁止ではなく、レビュー中に自動修正しないための区別です。
 
+### 追加の依存・使い分け
+
+- **`base-aware-edit` → `trace-design-origin`：** 既存コードの理由が不明なときに履歴調査を呼ぶため、2つをセットで配置してください。`trace-design-origin` は単独でも使えます。
+- **`base-aware-edit` を使うとき：** ベースブランチ由来のコード変更は、理由と影響を示して了承を得る運用です。説明用skillの「範囲内は自分で進める」と併用しても、この変更前の確認は省きません。
+- **`pr-description` + 説明用skill：** PR本文は掲載先の表示機能に合わせ、会話での説明は会話環境に合わせます。Mermaid非対応の会話ではPR本文の図をそのまま読ませず、必要な要約を伝えます。
+
 ## 導入
 
 必要なskillのフォルダを、利用するエージェントのskill保存先へコピーします。
-各フォルダの `SKILL.md` だけで完結し、他のskillや共通ファイルへの依存はありません。
+各フォルダの本体は `SKILL.md` です。`base-aware-edit` を選ぶ場合は、`trace-design-origin` のフォルダもコピーしてください。
 
 ### piの場合
 
@@ -75,6 +84,9 @@ Windowsのユーザー共通の保存先は `%USERPROFILE%\.pi\agent\skills\` �
 /skill:design-model この機能の仕組みと守るべき条件を整理して
 /skill:boundary-first この不具合の修正場所を、状態の所有者から検討して
 /skill:boundary-review src/ の責務や配置のずれを調べて
+/skill:base-aware-edit このブランチの変更を見直して
+/skill:trace-design-origin この分岐が追加された理由を履歴から調べて
+/skill:pr-description このPRの本文を整えて
 /skill:reader-first この処理が何をしているか説明して
 ```
 
