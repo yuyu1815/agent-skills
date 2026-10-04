@@ -7,14 +7,15 @@ AIがコードや説明を作るときの判断を支えるskillsです。
 
 ## どれを使うか
 
+### 基本スキル
+
+PR運用を前提とせず、設計・実装・レビュー・説明に使えます。
+
 | Skill | 役割 | 使う場面 |
 |---|---|---|
 | [design-model](skills/design-model/SKILL.md) | コードの編集手順より先に、仕組み・関係・保証を捉える | 設計書、実装計画、設計を伴う委任 |
 | [boundary-first](skills/boundary-first/SKILL.md) | 処理や状態をどこに持たせるか判断する | 実装、修正、リファクタリング |
 | [boundary-review](skills/boundary-review/SKILL.md) | 既存コードから責務・配置・表現のずれを探す | 読み取り専用の設計レビュー |
-| [base-aware-edit](skills/base-aware-edit/SKILL.md) | 今回追加した行とベースブランチ由来の行を区別し、変更前の確認を切り替える | ブランチ上での編集・削除・リファクタリング |
-| [trace-design-origin](skills/trace-design-origin/SKILL.md) | コミット・PR・レビュー・issueから、コードが置かれた理由を調べる | 意図が不明な既存コードの変更前 |
-| [pr-description](skills/pr-description/SKILL.md) | 変更の全体像と挙動の違いが分かるPR本文を作る | PR本文の作成・更新 |
 | [reader-first](skills/reader-first/SKILL.md) | 目的と共有理解に合わせて、文章・表・短いテキスト図で説明する | Mermaid非対応の会話環境 |
 | [reader-first-mermaid](skills/reader-first-mermaid/SKILL.md) | 同じ説明方針で、Mermaidも表示手段として選べる | Mermaid対応の会話環境 |
 
@@ -30,6 +31,17 @@ AIがコードや説明を作るときの判断を支えるskillsです。
 内部名だけで説明せず、役割や動作を伝え、コードとの照合に必要な正式名称を添えます。
 
 違いは表示環境です。Mermaid対応版でも、内容に合う文章・表・図を選びます。すべてを図にするものではありません。
+
+### 高度スキル — ブランチ・PR運用向け
+
+Gitのブランチや履歴、GitHubのPRを使う作業向けです。GitとGitHub CLI（`gh`）を利用します。
+`base-aware-edit` と `trace-design-origin` はPRがない場合の手順もありますが、ブランチや変更履歴を扱うため、こちらに分類しています。
+
+| Skill | 役割 | 使う場面 |
+|---|---|---|
+| [base-aware-edit](skills/base-aware-edit/SKILL.md) | 今回追加した行とベースブランチ由来の行を区別し、変更前の確認を切り替える | ブランチ上での編集・削除・リファクタリング |
+| [trace-design-origin](skills/trace-design-origin/SKILL.md) | コミット・PR・レビュー・issueから、コードが置かれた理由を調べる | 意図が不明な既存コードの変更前 |
+| [pr-description](skills/pr-description/SKILL.md) | 変更の全体像と挙動の違いが分かるPR本文を作る | PR本文の作成・更新 |
 
 ## 併用について
 
