@@ -1,6 +1,6 @@
 ---
 name: reader-first-mermaid
-description: ユーザーとchatする場合確実に使ってください
+description: ユーザーと会話する場合確実に使ってください
 ---
 
 # Reader First
