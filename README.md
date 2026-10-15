@@ -16,7 +16,7 @@ AIに、目の前のエラーを消すだけでなく「どこを直すべきか
 | [boundary-first](skills/boundary-first/SKILL.md) | AIが最小限の修正で問題にふたをするのを防ぎ、その対処が必要になっている原因や、処理・データの置き場所まで見直すskill。 |
 | [boundary-review](skills/boundary-review/SKILL.md) | 既存コードから、その場しのぎの補正や継ぎ足しで問題をふさいでいる箇所を探し、改善案を示すskill。修正は行いません。 |
 | [reader-first](skills/reader-first/SKILL.md) / [reader-first-mermaid](skills/reader-first-mermaid/SKILL.md) | コードや仕組みを人に説明するとき、相手の理解に合わせて読みやすくするskill。Mermaidの表示に対応しているかで使い分けます。 |
-| [action-weight](skills/action-weight/SKILL.md) | AIが話し合いの途中で勝手に調べたり作り始めたりするのを防ぐskill。「調べていいよ」「作っていいよ」と明確に言われるまで次に進みません。 |
+| [action-weight](skills/action-weight/SKILL.md) | AIが話し合いの途中で勝手に作り始めるのを防ぎつつ、頼まれたことは聞き直さずに最後までやるskill。発言に書かれた依頼の動詞と対象だけで、進むか止まるかを判定します。 |
 | [search-weight](skills/search-weight/SKILL.md) | AIがホーム全体や汎用語での重い検索を投げるのを防ぐskill。狭い範囲・少ない出力・専用コマンドから順に使います。 |
 
 説明用の2つは、Mermaidの図を表示できる環境なら `reader-first-mermaid`、表示できない環境なら `reader-first` のどちらか一方を選んでください。
